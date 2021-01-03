@@ -6,7 +6,9 @@ module.exports = {
             use: [{
                 loader: '../../src/index.js',
                 options: {
-                    compile: false, // false: interpretation mode; true: compilation mode
+                    compile: true, // false: interpretation mode; true: compilation mode
+                    globalPreflight: true,  // preflight style is global or scoped
+                    globalUtility: true,  // utility style is global or scoped
                     // prefix: 'windi-',
                 }
             }]
