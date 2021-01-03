@@ -4,9 +4,10 @@ module.exports = {
         config.module.rules.push({
             test: /\.vue$/,
             use: [{
-                loader: '../../index.js',
+                loader: '../../src/index.js',
                 options: {
-                    prefix: false
+                    compile: false, // false: interpretation mode; true: compilation mode
+                    // prefix: 'windi-',
                 }
             }]
         })
