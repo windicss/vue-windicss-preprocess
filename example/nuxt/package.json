@@ -1,0 +1,16 @@
+{
+  "name": "nuxt_example",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt --port 3333",
+    "build": "nuxt build",
+    "start": "nuxt start --port 3333",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "core-js": "^3.6.5",
+    "nuxt": "^2.14.6"
+  },
+  "devDependencies": {}
+}
