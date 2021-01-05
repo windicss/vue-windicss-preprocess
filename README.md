@@ -1,6 +1,6 @@
 # vue-windicss-preprocess
 
-> A vue loader to compile tailwindcss at build time based on [windicss](https://github.com/voorjaar/windicss) compiler.
+> A vue loader to compile [tailwindcss](https://github.com/tailwindlabs/tailwindcss) at build time based on [windicss](https://github.com/voorjaar/windicss) compiler.
 
 ## Installation
 
@@ -86,23 +86,29 @@ export default {
 
 ## Usage
 
-You can write any tailwindcss classes in your `.vue` files.
+You can write any [tailwindcss](https://github.com/tailwindlabs/tailwindcss) classes in your `.vue` files.
 
 ```html
-<div class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-  <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:flex-shrink-0" src="/img/erin-lindford.jpg" alt="Woman's Face">
-  <div class="text-center space-y-2 sm:text-left">
-    <div class="space-y-0.5">
-      <p class="text-lg text-black font-semibold">
-        Erin Lindford
-      </p>
-      <p class="text-gray-500 font-medium">
-        Product Engineer
-      </p>
+<template>
+  <div class="py-8 px-8 max-w-sm mx-auto bg-white rounded-xl shadow-md space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+    <img class="block mx-auto h-24 rounded-full sm:mx-0 sm:flex-shrink-0" src="/img/erin-lindford.jpg" alt="Woman's Face">
+    <div class="text-center space-y-2 sm:text-left">
+      <div class="space-y-0.5">
+        <p class="text-lg text-black font-semibold">
+          Erin Lindford
+        </p>
+        <p class="text-gray-500 font-medium">
+          Product Engineer
+        </p>
+      </div>
+      <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Message</button>
     </div>
-    <button class="px-4 py-1 text-sm text-purple-600 font-semibold rounded-full border border-purple-200 hover:text-white hover:bg-purple-600 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-offset-2">Message</button>
   </div>
-</div>
+</template>
+
+<script>
+export default {}
+</script>
 ```
 
 ### Compilation mode
@@ -144,7 +150,7 @@ This is not css-in-js, [windicss](https://github.com/voorjaar/windicss) only mer
 
 ### Interpretation mode
 
-Interpretation mode will not modify your classes, it will only compile the original tailwind classes just like tailwindcss, but it is minimized and has native cross-browser support.
+Interpretation mode will not modify your classes, it will only compile the original tailwind classes just like [tailwindcss](https://github.com/tailwindlabs/tailwindcss), but it is minimized and has native cross-browser support.
 
 ```css
 /* ... */

@@ -1,7 +1,7 @@
 {
   "name": "vue-windicss-preprocess",
   "version": "1.0.0",
-  "description": "A Vue Loader to compile tailwindcss at build time.",
+  "description": "A vue loader to compile tailwindcss at build time based on windicss compiler.",
   "main": "src/index.js",
   "types": "src/index.d.ts",
   "directories": {
@@ -10,6 +10,10 @@
   "scripts": {
     "dev": "tsc -w",
     "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/voorjaar/vue-windicss-preprocess.git"
   },
   "keywords": [
     "vue",
