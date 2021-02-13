@@ -1,4 +1,5 @@
 import { StyleSheet } from 'windicss/utils/style';
+import type { loader } from "webpack";
 
 export function searchNotEscape(text:string, char = "{") {
   if (text.charAt(0) === char) return 0;
@@ -38,3 +39,10 @@ export function loadConfig(config?: string) {
   if (process.env.BROWSER) return config;
   return config ? require(require('path').resolve(config)) : undefined;
 }
+
+export function getOptions(root:loader.LoaderContext) {
+  if (process.env.BROWSER) return {};
+  return require("loader-utils").getOptions(root);
+}
+
+

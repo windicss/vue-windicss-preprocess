@@ -58,6 +58,7 @@ const main = {
   input: "src/index.ts",
   output: [
     {
+      exports: "default",
       file: dump("index.js"),
       format: "cjs"
     }

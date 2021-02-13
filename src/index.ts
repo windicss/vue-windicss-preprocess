@@ -1,21 +1,43 @@
-import MagicString from 'magic-string';
-import { loader } from 'webpack';
-import { getOptions } from 'loader-utils';
-import { HTMLParser } from 'windicss/src/utils/html';
-import { StyleSheet } from 'windicss/src/utils/style';
-import { preflight, interpret, compile } from 'windicss';
+import MagicString from "magic-string";
+import { Processor } from "windicss/lib";
+import { CSSParser } from "windicss/utils/parser";
+import { StyleSheet } from "windicss/utils/style";
+import { default as HTMLParser } from "./parser";
+import { getOptions, loadConfig, combineStyleList } from "./utils";
+import type { loader } from "webpack";
 
 
-const OPTIONS = {
-    compile: false, // true: compilation mode; false: interpretation mode
-    globalPreflight: true,  // preflight style is global or scoped
-    globalUtility: false, // utility style is global or scoped, recommend true for interpretation mode, false for compilation mode
-    prefix: 'windi-' // compiled style name prefix
+const OPTIONS: {
+    config?: string;
+    compile?: boolean;
+    prefix?: string;
+    bundle?: string;
+    globalPreflight?: boolean;
+    globalUtility?: boolean;
+  } = {
+    compile: false,
+    prefix: "windi-",
+    globalPreflight: true,
+    globalUtility: true,
+};
+
+const REGEXP = {
+    matchStyle: /<style[^>]*?(\/|(>([\s\S]*?)<\/style))>/g,
+    matchTemplate: /<template>([\s\S]+)<\/template>/,
+    matchClasses: /('[\s\S]+?')|("[\s\S]+?")|(`[\s\S]+?`)/g,
+    isGlobalStyle: /<\/?style\s+global[^>]*>/,
+};
+
+const MODIFIED: { [key: string]: string } = {
+    xxl: "2xl",
+    "tw-disabled": "disabled",
+    "tw-required": "required",
+    "tw-checked": "checked",
 };
 
 
 function matchTemplate(content:string) {
-    const matched = content.match(/<template>([\s\S]+)<\/template>/);
+    const matched = content.match(REGEXP.matchTemplate);
     const start = matched?.index;
     const data = matched?.[0];
     if (!data) return;
@@ -30,38 +52,107 @@ function matchTemplate(content:string) {
 }
 
 
-function compileStyle(preflight:string, utility:string, globalPreflight=true, globalUtility=false) {
-    const tag = (global:boolean) => global ? "<style>" : "<style scoped>";
-    return `\n${tag(globalPreflight)}\n${preflight}\n</style>\n${tag(globalUtility)}\n${utility}\n</style>`;
+function addVariant(classNames: string, variant: string) {
+    // prepend variant before each className
+    if (variant in MODIFIED) variant = MODIFIED[variant];
+    const groupRegex = /[\S]+:\([\s\S]*?\)/g;
+    const groups = [...(classNames.match(groupRegex) ?? [])];
+    const utilities = classNames
+      .replace(groupRegex, "")
+      .split(/\s+/)
+      .filter((i) => i);
+    return [...utilities, ...groups].map((i) => `${variant}:${i}`).join(" ");
+}
+
+
+function compileStyleList(styleList: StyleSheet[], global = false) {
+    return `\n${global?"<style>":"<style scoped>"}\n${combineStyleList(styleList).build()}\n</style>`;
 }
 
 
 export default function (this: loader.LoaderContext, content:string) {
     const options = {...OPTIONS, ...(getOptions(this) || {})};
-    const matched = matchTemplate(content)?.content;
-    if (!matched) return content;
-    const template = matched.data;
-    if (!template) return content;
-    const parser = new HTMLParser(template);
-    const preflights = preflight(parser.parseTags(), true);
-    if (options.compile) {
-        // compilation mode
-        const magicTemplate = new MagicString(template);
-        const styleList:StyleSheet[] = [ new StyleSheet() ]; // Fix "Reduce of empty array with no initial value"
-        parser.parseClasses().forEach(classes=>{
-            const utilities = compile(classes.result, options.prefix);
-            styleList.push(utilities.styleSheet);
-            magicTemplate.overwrite(classes.start, classes.end, [utilities.className, ...utilities.ignored].join(' '));
+    const processor = new Processor(loadConfig(options.config));
+    const variants = [
+        ...Object.keys(processor.resolveVariants()),
+        ...Object.keys(MODIFIED),
+      ].filter((i) => !Object.values(MODIFIED).includes(i)); // update variants to make vue happy
+    
+    const globalStyles:StyleSheet[] = [];
+    const scopedStyles:StyleSheet[] = [];
+    
+    const template = matchTemplate(content)?.content;
+    if (!(template && template.data)) return content;
+    
+    let styleBlocks = content.match(REGEXP.matchStyle);
+    if (styleBlocks) {
+        styleBlocks.forEach(style => {
+            (REGEXP.isGlobalStyle.test(style)?globalStyles:scopedStyles).push(new CSSParser(style.replace(/<\/?style[^>]*>/g, ""), processor).parse());
         });
-        const styleScoped = styleList.reduce((previousValue: StyleSheet, currentValue: StyleSheet) => previousValue.extend(currentValue)).combine().build()
-        return new MagicString(content)
-                .overwrite(matched.start, matched.end, magicTemplate.toString())
-                .append(compileStyle(preflights.build(), styleScoped, options.globalPreflight, options.globalUtility))
-                .toString();
-    } else {
-        // interpretation mode
-        const utilities = interpret(parser.parseClasses().map(i=>i.result).join(' '));
-        // there is a duplicated classes error need to be fixed. Although vuejs will remove all duplicated classes after build
-        return content + compileStyle(preflights.build(), utilities.styleSheet.build(), options.globalPreflight, options.globalUtility);
+        content = content.replace(REGEXP.matchStyle, "");
     }
+
+    const code = new MagicString(content);
+    const parser = new HTMLParser(template.data);
+    parser.parse().forEach(tag => {
+        let classes: string[] = [];
+        let conditionClasses: string[] = [];
+        let classStart: number | undefined;
+        tag.value.forEach((node) => {
+            if (node.type === "Attribute") {
+                if (node.name === "class" || node.name === "tw") {
+                    classStart = node.start;
+                    code.overwrite(node.start, node.end, "");
+                    if (!Array.isArray(node.value)) node.value = [node.value];
+                    classes = [
+                        ...classes,
+                        ...node.value.filter((i) => i.type === "Text").map((i) => i.data),
+                    ];
+                } else if (variants.includes(node.name)) {
+                    // handle variants attribute
+                    classStart = node.start;
+                    code.overwrite(node.start, node.end, "");
+                    if (!Array.isArray(node.value)) node.value = [node.value];
+                    classes = [
+                        ...classes,
+                        ...node.value
+                        .filter((i) => i.type === "Text")
+                        .map((i) => addVariant(i.data, node.name)),
+                    ];
+                }
+            } else if (node.type === "Directive") {
+                conditionClasses.push(node.name);
+            }
+        });
+
+        if (classStart) {
+            if (options.compile) {
+                const utility = processor.compile(classes.join(" "), options.prefix, false);
+                (options.globalUtility && !options.bundle) ? globalStyles.push(utility.styleSheet) : scopedStyles.push(utility.styleSheet);
+                const className = utility.className ? [utility.className, ...utility.ignored].join(" ") : utility.ignored.join(" ");
+                code.prependLeft(classStart, `class="${className}"`);
+            } else {
+                const className = classes.join(" ");
+                const utility = processor.interpret(className);
+                (options.globalUtility && !options.bundle) ? globalStyles.push(utility.styleSheet) : scopedStyles.push(utility.styleSheet);
+                code.prependLeft(classStart, `class="${className}"`);
+            }
+        }
+      
+        if (conditionClasses.length > 0) {
+            const utility = processor.interpret(conditionClasses.join(" "));
+            globalStyles.push(utility.styleSheet);
+        }
+    });
+
+    const preflights = processor.preflight(template.data, true, true, true, true);
+
+    (options.globalPreflight && !options.bundle) ? globalStyles.push(preflights) : scopedStyles.push(preflights);
+
+    const styles:string[] = [];
+    if(globalStyles[0]) styles.push(compileStyleList(globalStyles, true));
+    if(scopedStyles[0]) styles.push(compileStyleList(scopedStyles, false));
+    code.trimEnd().append(styles.join('\n'));
+    
+    return code.toString();
 };
