@@ -36,7 +36,7 @@ export default {
     extend(config) {
       config.module.rules.push({
         test: /\.vue$/,
-        loader: '../../src/index.js',
+        loader: '../../dist/index.js',
         options: {
           compile: true, // false: interpretation mode; true: compilation mode
           globalPreflight: true,  // preflight style is global or scoped

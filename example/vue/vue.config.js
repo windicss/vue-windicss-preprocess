@@ -4,7 +4,7 @@ module.exports = {
         config.module.rules.push({
             test: /\.vue$/,
             use: [{
-                loader: '../../src/index.js',
+                loader: '../../dist/index.js',
                 options: {
                     compile: false,
                     globalPreflight: true,

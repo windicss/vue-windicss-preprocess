@@ -93,7 +93,7 @@ export default function (this: loader.LoaderContext, content:string) {
     }
 
     const code = new MagicString(content);
-    const parser = new HTMLParser(template.data);
+    const parser = new HTMLParser(content);
     parser.parse().forEach(tag => {
         let classes: string[] = [];
         let conditionClasses: string[] = [];
