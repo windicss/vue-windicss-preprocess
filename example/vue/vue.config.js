@@ -6,12 +6,13 @@ module.exports = {
             use: [{
                 loader: '../../dist/index.js',
                 options: {
+                    // config: 'tailwind.config.js',
                     compile: false,
                     globalPreflight: true,
                     globalUtility: true,
                     prefix: 'windi-',
                 }
             }]
-        })
+        });
     }
 }
