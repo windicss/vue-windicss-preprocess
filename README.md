@@ -217,7 +217,7 @@ Hit `ctrl-shift-p` or `cmd-shift-p` on mac, type open settings, and select `Pref
 
 ## Resources
 
-- [Roadmap](https://github.com/voorjaar/svelte-windicss-preprocess/projects/1)
+- [Roadmap](https://github.com/voorjaar/windicss/projects/1)
 
 - [Documents](https://github.com/voorjaar/windicss/wiki/Introduction#what-is-windicss)
 
