@@ -1,6 +1,6 @@
 # vue-windicss-preprocess
 
-> A vue loader to compile [tailwindcss](https://github.com/tailwindlabs/tailwindcss) at build time based on [windicss](https://github.com/voorjaar/windicss) compiler.
+> A vue loader to compile [tailwindcss](https://github.com/tailwindlabs/tailwindcss) at build time based on [windicss](https://github.com/windicss/windicss) compiler.
 
 ## Installation
 
@@ -116,7 +116,7 @@ export default {}
 
 ### Compilation mode
 
-This is not css-in-js, [windicss](https://github.com/voorjaar/windicss) only merges and compiles the tailwind classes of each line into a new class. You can try to compile (`npm run build`) and check the generated css file.
+This is not css-in-js, [windicss](https://github.com/windicss/windicss) only merges and compiles the tailwind classes of each line into a new class. You can try to compile (`npm run build`) and check the generated css file.
 
 ```html
 <div class="windi-15wa4me">
@@ -203,7 +203,7 @@ Hit `ctrl-shift-p` or `cmd-shift-p` on mac, type open settings, and select `Pref
 
 - `tw` is an optional replacement attribute of `class`, The className in `tw` will be merged into the `class` attribute after compilation.
 
-- Group: You can also write groups in all the attributes mentioned above, such as `class="font-meidum sm:hover:(font-bold bg-gray-200)"`. This is a native feature supported by [windicss](https://github.com/voorjaar/windicss).
+- Group: You can also write groups in all the attributes mentioned above, such as `class="font-meidum sm:hover:(font-bold bg-gray-200)"`. This is a native feature supported by [windicss](https://github.com/windicss/windicss).
 
 - Unrestricted build: such as `bg-hex-1c1c1e p-3.2 p-3rem p-4px w-10/11 bg-$custom-variable ...`
 
@@ -211,16 +211,16 @@ Hit `ctrl-shift-p` or `cmd-shift-p` on mac, type open settings, and select `Pref
 
 - States attribute: such as `sm md lg xl xxl focus hover dark ...` after applid media rules then also will be merged into the `class` attribute. (Attributes like `sm:hover` are not available because they may be rarely used and slow down the parsing speed.)
 
-- [Customize](https://github.com/voorjaar/svelte-windicss-preprocess/blob/main/docs/using-tailwind-configuration.md): support `tailwind.config.js`.
+- [Customize](https://github.com/windicss/svelte-windicss-preprocess/blob/main/docs/using-tailwind-configuration.md): support `tailwind.config.js`.
 
-- For more details, please refer to [windicss](https://github.com/voorjaar/windicss).
+- For more details, please refer to [windicss](https://github.com/windicss/windicss).
 
 ## Resources
 
-- [Roadmap](https://github.com/voorjaar/windicss/projects/1)
+- [Roadmap](https://github.com/windicss/windicss/projects/1)
 
-- [Documents](https://github.com/voorjaar/windicss/wiki/Introduction#what-is-windicss)
+- [Documents](https://windicss.netlify.app/)
 
-- [Discussions](https://github.com/voorjaar/windicss/discussions)
+- [Discussions](https://github.com/windicss/windicss/discussions)
 
-- [MIT License](https://github.com/voorjaar/vue-windicss-preprocess/blob/main/LICENSE)
+- [MIT License](https://github.com/windicss/vue-windicss-preprocess/blob/main/LICENSE)
