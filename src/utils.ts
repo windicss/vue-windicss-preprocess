@@ -1,5 +1,6 @@
 import { StyleSheet } from 'windicss/utils/style';
 import type { loader } from "webpack";
+import { Config as WindicssConfig } from "windicss/types/interfaces";
 
 export function searchNotEscape(text:string, char = "{") {
   if (text.charAt(0) === char) return 0;
@@ -35,9 +36,28 @@ export function writeFileSync(path: string, data: string) {
   if (!process.env.BROWSER) return require('fs').writeFileSync(path, data);
 }
 
-export function loadConfig(config?: string) {
-  if (process.env.BROWSER) return config;
-  return config ? require(require('path').resolve(config)) : undefined;
+/**
+ * Resolve the WindicssConfig.
+ * @param config File path to tailwind.config.js or object of WindicssConfig
+ */
+export function resolveConfig(config?: string | WindicssConfig) {
+  // handle invalid config
+  if (!config) {
+    return undefined
+  }
+  /*
+   * If it's a string it's assumed it's a file path so we pass it to the other function. We check if it's a browser
+   * context otherwise the load may fail.
+   */
+  if (typeof config === 'string' && !process.env.BROWSER) {
+    return loadConfigFile(config)
+  }
+  // if it's already an object we can just return it as is
+  return config
+}
+
+export function loadConfigFile(config: string) {
+  return require(require('path').resolve(config));
 }
 
 export function getOptions(root:loader.LoaderContext) {

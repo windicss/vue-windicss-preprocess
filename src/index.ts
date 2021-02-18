@@ -3,12 +3,12 @@ import { Processor } from "windicss/lib";
 import { CSSParser } from "windicss/utils/parser";
 import { StyleSheet } from "windicss/utils/style";
 import { default as HTMLParser } from "./parser";
-import { getOptions, loadConfig, combineStyleList } from "./utils";
+import { getOptions, resolveConfig, combineStyleList } from "./utils";
 import type { loader } from "webpack";
-
+import type { Config as WindicssConfig } from "windicss/types/interfaces"
 
 const OPTIONS: {
-    config?: string;
+    config?: string | WindicssConfig;
     compile?: boolean;
     prefix?: string;
     bundle?: string;
@@ -72,18 +72,18 @@ function compileStyleList(styleList: StyleSheet[], global = false) {
 
 export default function (this: loader.LoaderContext, content:string) {
     const options = {...OPTIONS, ...(getOptions(this) || {})};
-    const processor = new Processor(loadConfig(options.config));
+    const processor = new Processor(resolveConfig(options.config));
     const variants = [
         ...Object.keys(processor.resolveVariants()),
         ...Object.keys(MODIFIED),
       ].filter((i) => !Object.values(MODIFIED).includes(i)); // update variants to make vue happy
-    
+
     const globalStyles:StyleSheet[] = [];
     const scopedStyles:StyleSheet[] = [];
-    
+
     const template = matchTemplate(content)?.content;
     if (!(template && template.data)) return content;
-    
+
     let styleBlocks = content.match(REGEXP.matchStyle);
     if (styleBlocks) {
         styleBlocks.forEach(style => {
@@ -138,7 +138,7 @@ export default function (this: loader.LoaderContext, content:string) {
                 code.prependLeft(classStart, `class="${className}"`);
             }
         }
-      
+
         if (conditionClasses.length > 0) {
             const utility = processor.interpret(conditionClasses.join(" "));
             globalStyles.push(utility.styleSheet);
@@ -153,6 +153,6 @@ export default function (this: loader.LoaderContext, content:string) {
     if(globalStyles[0]) styles.push(compileStyleList(globalStyles, true));
     if(scopedStyles[0]) styles.push(compileStyleList(scopedStyles, false));
     code.trimEnd().append(styles.join('\n'));
-    
+
     return code.toString();
 };
