@@ -25,7 +25,7 @@ module.exports = {
         use: [{
           loader: 'vue-windicss-preprocess',
           options: {
-            config: "tailwind.config.js",  // tailwind config file path (optional)
+            config: "tailwind.config.js",  // tailwind config file path OR config object (optional)
             compile: false,                // false: interpretation mode; true: compilation mode
             globalPreflight: true,         // set preflight style is global or scoped
             globalUtility: true,           // set utility style is global or scoped
@@ -48,7 +48,7 @@ module.exports = {
       use: [{
         loader: 'vue-windicss-preprocess',
         options: {
-          config: "tailwind.config.js",  // tailwind config file path (optional)
+          config: "tailwind.config.js",  // tailwind config file path OR config object (optional)
           compile: false,                // false: interpretation mode; true: compilation mode
           globalPreflight: true,         // set preflight style is global or scoped
           globalUtility: true,           // set utility style is global or scoped
@@ -75,7 +75,7 @@ export default {
         test: /\.vue$/,
         loader: 'vue-windicss-preprocess',
         options: {
-          config: "tailwind.config.js",  // tailwind config file path (optional)
+          config: "tailwind.config.js",  // tailwind config file path OR config object (optional)
           compile: false,                // false: interpretation mode; true: compilation mode
           globalPreflight: true,         // set preflight style is global or scoped
           globalUtility: true,           // set utility style is global or scoped
