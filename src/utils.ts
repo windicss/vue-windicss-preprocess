@@ -46,7 +46,7 @@ export function resolveConfig(config?: string | WindicssConfig) {
     return undefined
   }
   /*
-   * If it's a string it's assumed it's a file path so we pass it to the other function. We check if it's a browser
+   * A type of string implies a file path to the tailwind.config.js. We check if it's a browser
    * context otherwise the load may fail.
    */
   if (typeof config === 'string' && !process.env.BROWSER) {
