@@ -34,11 +34,17 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extend(config) {
+      const { buildContext } = this
       config.module.rules.push({
         test: /\.vue$/,
         loader: '../../dist/index.js',
         options: {
-          compile: true, // false: interpretation mode; true: compilation mode
+          config: {
+            plugins: [
+              require('windicss/plugin/typography')
+            ]
+          },
+          compile: !buildContext.nuxt.options.dev, // false: interpretation mode; true: compilation mode
           globalPreflight: true,  // preflight style is global or scoped
           globalUtility: true,  // utility style is global or scoped
           // prefix: 'windi-',
