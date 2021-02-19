@@ -1,0 +1,29 @@
+{
+  "name": "nuxt-composition",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nuxtjs/composition-api": "^0.20.2",
+    "nuxt": "^2.15.0"
+  },
+  "devDependencies": {
+    "@nuxt/types": "^2.15.0",
+    "@nuxt/typescript-build": "^2.0.4",
+    "css-loader": "^5.0.2",
+    "postcss": "^8.2.6",
+    "postcss-import": "^13.0.0",
+    "postcss-loader": "^4.2.0",
+    "postcss-nested": "^5.0.3",
+    "postcss-url": "^10.1.1",
+    "vue-windicss-preprocess": "^2.0.0",
+    "windicss": "^2.1.13"
+  }
+}
