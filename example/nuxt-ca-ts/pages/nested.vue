@@ -23,6 +23,7 @@ export default Vue.extend({
   & .b {
     @apply text-black;
 
+    // comment this line for working
     &:hover {
       @apply text-green;
     }
