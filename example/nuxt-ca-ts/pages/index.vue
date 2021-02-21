@@ -18,12 +18,6 @@
       <div class="item from-green-200 to-green-500"></div>
       <div class="item from-purple-400 to-yellow-400"></div>
       <div class="item from-red-800 via-yellow-600 to-yellow-500"></div>
-      <div class="item from-pink-300 via-purple-300 to-indigo-400"></div>
-      <div class="item from-yellow-200 via-yellow-400 to-yellow-700"></div>
-      <div class="item from-indigo-300 to-purple-400"></div>
-      <div class="item from-green-200 to-green-500"></div>
-      <div class="item from-purple-400 to-yellow-400"></div>
-      <div class="item from-red-800 via-yellow-600 to-yellow-500"></div>
 
       <div class="item" v-for="(item, i) in items" :key="i" :class="item"></div>
     </div>
@@ -34,14 +28,16 @@
 import { ref, defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
-  props: {},
   setup() {
-    // not working is dynamic set classes
     const items = ref([
       'from-pink-300 via-purple-300 to-indigo-400',
       'from-yellow-200 via-yellow-400 to-yellow-700',
       'from-indigo-300 to-purple-400',
       'from-green-200 to-green-500',
+
+      // undefined dynamic classes not work in script tag
+      'from-green-100 to-blue-900',
+
       'from-purple-400 to-yellow-400',
       'from-red-800 via-yellow-600 to-yellow-500',
     ])
@@ -53,6 +49,6 @@ export default defineComponent({
 
 <style lang="postcss">
 .item {
-  @apply flex-none snap-center w-100 h-100 rounded bg-gradient-to-r;
+  @apply flex-none snap-center w-80vw h-100 rounded bg-gradient-to-r;
 }
 </style>

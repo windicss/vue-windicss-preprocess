@@ -1,20 +1,19 @@
 <template>
   <div>
     <div class="a">
-      <div class="b">Text</div>
+      <div class="b">Text {{ lorem }}</div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from 'vue'
-export default Vue.extend({
-  props: {},
-  data() {
-    return {}
+import { ref, computed, defineComponent } from '@nuxtjs/composition-api'
+
+export default defineComponent({
+  setup() {
+    let lorem = ref('lorem text')
+    return { lorem }
   },
-  computed: {},
-  methods: {},
 })
 </script>
 
@@ -23,10 +22,13 @@ export default Vue.extend({
   & .b {
     @apply text-black;
 
-    // comment this line for working
+    /*
+    // commented not working line
+    
     &:hover {
       @apply text-green;
-    }
+    } 
+    */
   }
 }
 </style>
