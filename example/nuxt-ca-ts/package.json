@@ -1,15 +1,14 @@
 {
-  "name": "nuxt-composition",
+  "name": "nuxt-windicss-example",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@nuxtjs/composition-api": "^0.20.2",
     "nuxt": "^2.15.0"
