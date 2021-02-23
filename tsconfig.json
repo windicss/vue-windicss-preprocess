@@ -4,7 +4,7 @@
 		"target": "es5",
 		"module": "esnext",
 		"moduleResolution": "node",
-		"lib": ["dom", "es2017", "dom.iterable", "scripthost"],
+		"lib": ["dom", "es2017", "dom.iterable"],
 		"allowJs": true,
 		"strict": true,
 		"esModuleInterop": true,
