@@ -1,18 +1,20 @@
 dependencies:
   loader-utils: 2.0.0
   magic-string: 0.25.7
+  postcss: 8.2.6
+  postcss-nested: 5.0.3_postcss@8.2.6
   windicss: 2.2.0
 devDependencies:
   '@rollup/plugin-node-resolve': 11.2.0_rollup@2.39.1
   '@rollup/plugin-replace': 2.4.1_rollup@2.39.1
   '@rollup/plugin-sucrase': 3.1.0_rollup@2.39.1
-  '@rollup/plugin-typescript': 8.2.0_0509ec894807bd960fe8a9cbfd7b941f
+  '@rollup/plugin-typescript': 8.2.0_ede0086e07a686418d3789a3f139d7dc
   '@types/loader-utils': 2.0.1
   '@types/node': 14.14.31
   rollup: 2.39.1
   rollup-plugin-terser: 7.0.2_rollup@2.39.1
   tslib: 2.1.0
-  typescript: 4.1.5
+  typescript: 4.2.2
 lockfileVersion: 5.2
 packages:
   /@babel/code-frame/7.12.13:
@@ -71,13 +73,13 @@ packages:
       rollup: ^1.20.0 || ^2.0.0
     resolution:
       integrity: sha512-PZ70LDNgIj8rL+3pKwKwTBOQ2c9JofXeLbWz+2V4/nCt4LqwYTNqxJJf1riTJsVARVzJdA0woIzUzjKZvL8TfA==
-  /@rollup/plugin-typescript/8.2.0_0509ec894807bd960fe8a9cbfd7b941f:
+  /@rollup/plugin-typescript/8.2.0_ede0086e07a686418d3789a3f139d7dc:
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.39.1
       resolve: 1.20.0
       rollup: 2.39.1
       tslib: 2.1.0
-      typescript: 4.1.5
+      typescript: 4.2.2
     dev: true
     engines:
       node: '>=8.0.0'
@@ -215,6 +217,9 @@ packages:
     dev: true
     resolution:
       integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
+  /colorette/1.2.1:
+    resolution:
+      integrity: sha512-puCDz0CzydiSYOrnXpz/PKd69zRrribezjtE9yd4zvytoRc8+RY/KJPvtPFKZS3E3wP6neGyMe0vOTlHO5L3Pw==
   /commander/2.20.3:
     dev: true
     resolution:
@@ -229,6 +234,12 @@ packages:
     dev: true
     resolution:
       integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
+  /cssesc/3.0.0:
+    engines:
+      node: '>=4'
+    hasBin: true
+    resolution:
+      integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
   /deepmerge/4.2.2:
     dev: true
     engines:
@@ -299,6 +310,9 @@ packages:
       node: '>= 0.4.0'
     resolution:
       integrity: sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
+  /indexes-of/1.0.1:
+    resolution:
+      integrity: sha1-8w9xbI4r00bHtn0985FVZqfAVgc=
   /inflight/1.0.6:
     dependencies:
       once: 1.4.0
@@ -384,6 +398,12 @@ packages:
     dev: true
     resolution:
       integrity: sha512-z81GNO7nnYMEhrGh9LeymoE4+Yr0Wn5McHIZMK5cfQCl+NDX08sCZgUc9/6MHni9IWuFLm1Z3HTCXu2z9fN62Q==
+  /nanoid/3.1.20:
+    engines:
+      node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1
+    hasBin: true
+    resolution:
+      integrity: sha512-a1cQNyczgKbLX9jwbS/+d7W8fX/RfgYR7lVWwWOGIPNgK2m0MWvrGF6/m4kk6U3QcFMnZf3RIhL0v2Jgh/0Uxw==
   /node-modules-regexp/1.0.0:
     dev: true
     engines:
@@ -426,6 +446,38 @@ packages:
       node: '>= 6'
     resolution:
       integrity: sha512-WuNqLTbMI3tmfef2TKxlQmAiLHKtFhlsCZnPIpuv2Ow0RDVO8lfy1Opf4NUzlMXLjPl+Men7AuVdX6TA+s+uGA==
+  /postcss-nested/5.0.3_postcss@8.2.6:
+    dependencies:
+      postcss: 8.2.6
+      postcss-selector-parser: 6.0.4
+    dev: false
+    engines:
+      node: '>=10.0'
+    peerDependencies:
+      postcss: ^8.1.13
+    resolution:
+      integrity: sha512-R2LHPw+u5hFfDgJG748KpGbJyTv7Yr33/2tIMWxquYuHTd9EXu27PYnKi7BxMXLtzKC0a0WVsqHtd7qIluQu/g==
+  /postcss-selector-parser/6.0.4:
+    dependencies:
+      cssesc: 3.0.0
+      indexes-of: 1.0.1
+      uniq: 1.0.1
+      util-deprecate: 1.0.2
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha512-gjMeXBempyInaBqpp8gODmwZ52WaYsVOsfr4L4lDQ7n3ncD6mEyySiDtgzCT+NYC0mmeOLvtsF8iaEf0YT6dBw==
+  /postcss/8.2.6:
+    dependencies:
+      colorette: 1.2.1
+      nanoid: 3.1.20
+      source-map: 0.6.1
+    dev: false
+    engines:
+      node: ^10 || ^12 || >=14
+    resolution:
+      integrity: sha512-xpB8qYxgPuly166AGlpRjUdEYtmOWx2iCwGmrv4vqZL9YPVviDVPZPRXxnXr6xPZOdxQ9lp3ZBFCRgWJ7LE3Sg==
   /randombytes/2.1.0:
     dependencies:
       safe-buffer: 5.2.1
@@ -478,7 +530,6 @@ packages:
     resolution:
       integrity: sha512-Wonm7zOCIJzBGQdB+thsPar0kYuCIzYvxZwlBa87yi/Mdjv7Tip2cyVbLj5o0cFPN4EVkuTwb3GDDyUx2DGnGw==
   /source-map/0.6.1:
-    dev: true
     engines:
       node: '>=0.10.0'
     resolution:
@@ -555,13 +606,19 @@ packages:
     dev: true
     resolution:
       integrity: sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
-  /typescript/4.1.5:
+  /typescript/4.2.2:
     dev: true
     engines:
       node: '>=4.2.0'
     hasBin: true
     resolution:
-      integrity: sha512-6OSu9PTIzmn9TCDiovULTnET6BgXtDYL4Gg4szY+cGsc3JP1dQL8qvE8kShTRx1NIw4Q9IBHlwODjkjWEtMUyA==
+      integrity: sha512-tbb+NVrLfnsJy3M59lsDgrzWIflR4d4TIUjz+heUnHZwdF7YsrMTKoRERiIvI2lvBG95dfpLxB21WZhys1bgaQ==
+  /uniq/1.0.1:
+    resolution:
+      integrity: sha1-sxxa6CVIRKOoKBVBzisEuGWnNP8=
+  /util-deprecate/1.0.2:
+    resolution:
+      integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
   /windicss/2.2.0:
     dev: false
     engines:
@@ -582,6 +639,8 @@ specifiers:
   '@types/node': ^14.14.14
   loader-utils: ^2.0.0
   magic-string: ^0.25.7
+  postcss: ^8.2.6
+  postcss-nested: ^5.0.3
   rollup: ^2.38.5
   rollup-plugin-terser: ^7.0.2
   tslib: ^2.1.0

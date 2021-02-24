@@ -22,7 +22,7 @@
     "postcss-loader": "^4.2.0",
     "postcss-nested": "^5.0.3",
     "postcss-url": "^10.1.1",
-    "vue-windicss-preprocess": "^2.0.0",
+    "vue-windicss-preprocess": "workspace:../../dist",
     "windicss": "^2.1.13"
   }
 }

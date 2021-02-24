@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "nuxt --port 3333",
+    "dev": "cross-env DEBUG='nuxt:*' nuxt --port 3333",
     "build": "nuxt build",
     "start": "nuxt start --port 3333",
     "generate": "nuxt generate"
@@ -12,5 +12,9 @@
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "vue-windicss-preprocess": "workspace:../../dist",
+    "windicss": "^2.2.0"
+  }
 }

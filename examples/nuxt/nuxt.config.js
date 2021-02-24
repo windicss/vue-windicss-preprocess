@@ -37,7 +37,7 @@ export default {
       const { buildContext } = this
       config.module.rules.push({
         test: /\.vue$/,
-        loader: '../../dist/index.js',
+        loader: 'vue-windicss-preprocess',
         options: {
           config: {
             plugins: [
