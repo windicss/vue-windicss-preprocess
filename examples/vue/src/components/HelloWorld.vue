@@ -1,11 +1,11 @@
 <template>
   <main>
     <div
-      class="min-h-screen bg-gray-100 py-6 justify-center" tw="flex flex-col" sm="py-12"
+      class="justify-center min-h-screen py-6 bg-gray-100" tw="flex flex-col" sm="py-12"
     >
       <div class="relative py-3 sm:max-w-xl sm:mx-auto">
         <div
-          class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
+          class="absolute inset-0 transform -skew-y-6 shadow-lg bg-gradient-to-r from-cyan-400 to-light-blue-500 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"
         ></div>
         <div
           class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20"
@@ -16,13 +16,13 @@
             </div>
             <div class="divide-y divide-gray-300">
               <div
-                class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7"
+                class="py-8 space-y-4 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7"
               >
                 <p>
                   An advanced online playground for Tailwind CSS, including
                   support for things like:
                 </p>
-                <ul class="list-disc space-y-2">
+                <ul class="space-y-2 list-disc">
                   <Feature>
                     Customizing your
                     <code class="text-sm font-bold text-gray-900"

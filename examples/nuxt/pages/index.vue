@@ -1,17 +1,17 @@
 <template>
   <main>
-    <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12 test">
+    <div class="flex flex-col justify-center min-h-screen py-6 bg-gray-100 sm:py-12 test">
       <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-light-blue-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+        <div class="absolute inset-0 transform -skew-y-6 shadow-lg bg-gradient-to-r from-cyan-400 to-light-blue-500 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
         <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
           <div class="max-w-md mx-auto">
             <div>
               <Logo/>
             </div>
             <div class="divide-y divide-gray-300">
-              <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+              <div class="py-8 space-y-4 text-base leading-6 text-gray-700 sm:text-lg sm:leading-7">
                 <p>An advanced online playground for Tailwind CSS, including support for things like:</p>
-                <ul class="list-disc space-y-2">
+                <ul class="space-y-2 list-disc">
                   <Feature>
                     Customizing your
                       <code class="text-sm font-bold text-gray-900">tailwind.config.js</code> file
@@ -44,14 +44,17 @@
 export default {}
 </script>
 
-<style scoped>
-  .testApply {
-    @apply pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7;
+<style lang="postcss" scoped>
+.test-apply {
+  @apply pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7;
+  .xxx {
+    border: 1px;
   }
+}
 
-  @screen +sm {
-    ul {
-      @apply bg-gray-100 p-2 rounded-lg;
-    }
+@screen +sm {
+  ul {
+    @apply bg-gray-100 p-2 rounded-lg;
   }
+}
 </style>
