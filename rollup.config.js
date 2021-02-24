@@ -78,6 +78,8 @@ const main = {
     "windicss/lib",
     "windicss/utils/parser",
     "windicss/utils/style",
+    "postcss",
+    "postcss-nested"
   ]
 };
 

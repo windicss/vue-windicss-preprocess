@@ -1,16 +1,15 @@
 {
 	"compilerOptions": {
 		"rootDir": ".",
-		"target": "es5",
+		"target": "es2017",
 		"module": "esnext",
 		"moduleResolution": "node",
-		"lib": ["dom", "es2017", "dom.iterable"],
-		"allowJs": true,
+		"lib": ["dom", "esnext", "dom.iterable"],
 		"strict": true,
+		"strictNullChecks": true,
 		"esModuleInterop": true,
-		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true
 	},
-  "include": ["./src"],
+  "exclude": ["**/dist", "**/examples"]
 }

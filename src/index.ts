@@ -22,7 +22,7 @@ const OPTIONS: {
 };
 
 const REGEXP = {
-    matchStyle: /<style[^>]*?(\/|(>([\s\S]*?)<\/style))>/g,
+    matchStyle: /<style[^>]*>([\s\S]*)<\/style>/g,
     matchTemplate: /<template>([\s\S]+)<\/template>/,
     matchClasses: /('[\s\S]+?')|("[\s\S]+?")|(`[\s\S]+?`)/g,
     isGlobalStyle: /<\/?style\s+global[^>]*>/,
@@ -85,13 +85,16 @@ export default function (this: loader.LoaderContext, content:string) {
     if (!(template && template.data)) return content;
 
     let styleBlocks = content.match(REGEXP.matchStyle);
+    
     if (styleBlocks) {
-        styleBlocks.forEach(style => {
-            (REGEXP.isGlobalStyle.test(style)?globalStyles:scopedStyles).push(new CSSParser(style.replace(/<\/?style[^>]*>/g, ""), processor).parse());
+        styleBlocks.forEach(async style => {
+            const styleStr = style.replace(/<\/?style[^>]*>/g, "");
+            const postcssPlugins = [(await import('postcss-nested')).default()]
+            const result = await((await import('postcss')).default(postcssPlugins).process(styleStr, { from: undefined }));
+            (REGEXP.isGlobalStyle.test(style)? globalStyles : scopedStyles).push(new CSSParser(result.css, processor).parse());
         });
         content = content.replace(REGEXP.matchStyle, "");
     }
-
     const code = new MagicString(content);
     const parser = new HTMLParser(content);
     parser.parse().forEach(tag => {
