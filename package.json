@@ -12,7 +12,8 @@
     "dev": "rollup -cw",
     "tsd": "tsc -p ./src --emitDeclarationOnly",
     "build": "rollup -c && npm run tsd",
-    "product": "PUBLISH=true rollup -c && npm run tsd"
+    "build:prod": "PUBLISH=true rollup -c && npm run tsd",
+    "release": "npx git-ensure -a && npx bumpp --commit --tag --push"
   },
   "repository": {
     "type": "git",
