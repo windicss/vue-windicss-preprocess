@@ -3,11 +3,6 @@ import { defineNuxtConfig } from '@nuxtjs/composition-api'
 export default defineNuxtConfig({
   buildModules: ['@nuxt/typescript-build', '@nuxtjs/composition-api'],
   build: {
-    postcss: {
-      plugins: {
-        'postcss-nested': {},
-      },
-    },
     extend(config) {
       config.module?.rules.push({
         test: /\.vue$/,

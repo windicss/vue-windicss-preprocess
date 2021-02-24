@@ -10,13 +10,15 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@nuxtjs/composition-api": "^0.20.2",
     "nuxt": "^2.15.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.15.0",
     "@nuxt/typescript-build": "^2.0.4",
+    "@nuxt/vue-app": "^2.15.2",
+    "@nuxtjs/composition-api": "^0.20.2",
     "css-loader": "^5.0.2",
+    "fs-extra": "^9.1.0",
     "postcss": "^8.2.6",
     "postcss-import": "^13.0.0",
     "postcss-loader": "^4.2.0",

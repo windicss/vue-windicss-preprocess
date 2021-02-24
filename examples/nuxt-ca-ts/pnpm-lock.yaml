@@ -1,10 +1,12 @@
 dependencies:
-  '@nuxtjs/composition-api': 0.20.2_nuxt@2.15.2
   nuxt: 2.15.2
 devDependencies:
   '@nuxt/types': 2.15.2
   '@nuxt/typescript-build': 2.0.6_@nuxt+types@2.15.2
+  '@nuxt/vue-app': 2.15.2
+  '@nuxtjs/composition-api': 0.20.2_88a79ed2b612d742b8051ddaf0b47dbe
   css-loader: 5.0.2
+  fs-extra: 9.1.0
   postcss: 8.2.6
   postcss-import: 13.0.0_postcss@8.2.6
   postcss-loader: 4.2.0_postcss@8.2.6
@@ -1290,7 +1292,6 @@ packages:
       vue-router: 3.5.1
       vue-template-compiler: 2.6.12
       vuex: 3.6.2_vue@2.6.12
-    dev: false
     resolution:
       integrity: sha512-wWh3yxiq5NfLXZS9chFsP8nEsXiCLKpOR9c9XQcuYLNumxys8+5Er8w+pUrrLgqTiShZD4ncXb6l7pgC51TIgQ==
   /@nuxt/vue-renderer/2.15.2:
@@ -1358,14 +1359,16 @@ packages:
     dev: false
     resolution:
       integrity: sha512-SRx+ThTtNuW+ugkP6xl7buTaQtRYY8/F+d1AAuS/39kRo/IL8ManyUgmq+pUyYnYpZdOlOvmiF7NWWVweWfmgg==
-  /@nuxtjs/composition-api/0.20.2_nuxt@2.15.2:
+  /@nuxtjs/composition-api/0.20.2_88a79ed2b612d742b8051ddaf0b47dbe:
     dependencies:
+      '@nuxt/vue-app': 2.15.2
       '@vue/composition-api': 1.0.0-rc.2
       defu: 3.2.2
+      fs-extra: 9.1.0
       nuxt: 2.15.2
       ufo: 0.6.7
       upath: 2.0.1
-    dev: false
+    dev: true
     peerDependencies:
       '@nuxt/vue-app': ^2.15
       fs-extra: ^8.1.0
@@ -1727,7 +1730,7 @@ packages:
   /@vue/composition-api/1.0.0-rc.2:
     dependencies:
       tslib: 2.1.0
-    dev: false
+    dev: true
     peerDependencies:
       vue: '>= 2.5 < 3'
     resolution:
@@ -3181,7 +3184,6 @@ packages:
     resolution:
       integrity: sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=
   /de-indent/1.0.2:
-    dev: false
     resolution:
       integrity: sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0=
   /debug/2.6.9:
@@ -3252,7 +3254,6 @@ packages:
     resolution:
       integrity: sha512-G9pEH1UUMxShy6syWk01VQSRVs3CDWtlxtZu7A+NyqjxaCA4gSlWAKDBx6QiUEKezqS8+DUlXLI14Fp05Hmpwg==
   /defu/3.2.2:
-    dev: false
     resolution:
       integrity: sha512-8UWj5lNv7HD+kB0e9w77Z7TdQlbUYDVWqITLHNqFIn6khrNHv5WQo38Dcm1f6HeNyZf0U7UbPf6WeZDSdCzGDQ==
   /depd/1.1.2:
@@ -4166,7 +4167,6 @@ packages:
     resolution:
       integrity: sha512-taOaskGt4z4SOANNseOviYDvjEJinIkRgmp7LbKP2YTTmVxWBl87s/uzK9r+44BclBSp2X7K1hqeNfz9JbBeXA==
   /he/1.2.0:
-    dev: false
     hasBin: true
     resolution:
       integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
@@ -5335,7 +5335,6 @@ packages:
     resolution:
       integrity: sha512-fgAN3jGAh+RoxUGZHTSOLJIqUc2wmoBwGR4tbpNAKmmovFoWq0OdRkb0VkldReO2a2iBT/OEulG9XSUc10r3zg==
   /node-fetch/2.6.1:
-    dev: false
     engines:
       node: 4.x || >=6.0.0
     resolution:
@@ -7932,7 +7931,6 @@ packages:
     resolution:
       integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==
   /tslib/2.1.0:
-    dev: false
     resolution:
       integrity: sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
   /tty-browserify/0.0.0:
@@ -7967,7 +7965,6 @@ packages:
     resolution:
       integrity: sha512-yo+miGzQx5gakzVK3QFfN0/L9uVhosXBBO7qmnk7c2iw1IhL212wfA3zbnI54B0obGwC/5NWub/iT9sReMx+Fw==
   /ufo/0.6.7:
-    dev: false
     resolution:
       integrity: sha512-pSaIXMAb5RTmuGEzSwqxvIt9x6qgsSXh3/dJXAaLGedT9oz2xqWCXvliFTCSUQxwHlG2fL3tseCFKoNEWpo31w==
   /uglify-js/3.12.8:
@@ -7978,7 +7975,6 @@ packages:
     resolution:
       integrity: sha512-fvBeuXOsvqjecUtF/l1dwsrrf5y2BCUk9AOJGzGcm6tE7vegku5u/YvqjyDaAGr422PLoLnrxg3EnRvTqsdC1w==
   /unfetch/4.2.0:
-    dev: false
     resolution:
       integrity: sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==
   /unicode-canonical-property-names-ecmascript/1.0.4:
@@ -8076,7 +8072,6 @@ packages:
     resolution:
       integrity: sha512-aZwGpamFO61g3OlfT7OQCHqhGnW43ieH9WZeP7QxN/G/jS4jfqUkZxoryvJgVPEcrl5NL/ggHsSmLMHuH64Lhg==
   /upath/2.0.1:
-    dev: false
     engines:
       node: '>=4'
     resolution:
@@ -8182,7 +8177,6 @@ packages:
     resolution:
       integrity: sha512-2ham8XPWTONajOR0ohOKOHXkm3+gaBmGut3SRuu75xLd/RRaY6vqgh8NBYYk7+RW3u5AtzPQZG8F10LHkl0lAQ==
   /vue-client-only/2.0.0:
-    dev: false
     resolution:
       integrity: sha512-arhk1wtWAfLsJyxGMoEYhoBowM87/i6HLSG2LH/03Yog6i2d9JEN1peMP0Ceis+/n9DxdenGYZZTxbPPJyHciA==
   /vue-hot-reload-api/2.3.4:
@@ -8216,15 +8210,12 @@ packages:
   /vue-meta/2.4.0:
     dependencies:
       deepmerge: 4.2.2
-    dev: false
     resolution:
       integrity: sha512-XEeZUmlVeODclAjCNpWDnjgw+t3WA6gdzs6ENoIAgwO1J1d5p1tezDhtteLUFwcaQaTtayRrsx7GL6oXp/m2Jw==
   /vue-no-ssr/1.1.1:
-    dev: false
     resolution:
       integrity: sha512-ZMjqRpWabMPqPc7gIrG0Nw6vRf1+itwf0Itft7LbMXs2g3Zs/NFmevjZGN1x7K3Q95GmIjWbQZTVerxiBxI+0g==
   /vue-router/3.5.1:
-    dev: false
     resolution:
       integrity: sha512-RRQNLT8Mzr8z7eL4p7BtKvRaTSGdCbTy2+Mm5HTJvLGYSSeG9gDzNasJPP/yOYKLy+/cLG/ftrqq5fvkFwBJEw==
   /vue-server-renderer/2.6.12:
@@ -8251,7 +8242,6 @@ packages:
     dependencies:
       de-indent: 1.0.2
       he: 1.2.0
-    dev: false
     resolution:
       integrity: sha512-OzzZ52zS41YUbkCBfdXShQTe69j1gQDZ9HIX8miuC9C3rBCk9wIRjLiZZLrmX9V+Ftq/YEyv1JaVr5Y/hNtByg==
   /vue-template-es2015-compiler/1.9.1:
@@ -8259,13 +8249,11 @@ packages:
     resolution:
       integrity: sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw==
   /vue/2.6.12:
-    dev: false
     resolution:
       integrity: sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
   /vuex/3.6.2_vue@2.6.12:
     dependencies:
       vue: 2.6.12
-    dev: false
     peerDependencies:
       vue: ^2.0.0
     resolution:
@@ -8527,8 +8515,10 @@ packages:
 specifiers:
   '@nuxt/types': ^2.15.0
   '@nuxt/typescript-build': ^2.0.4
+  '@nuxt/vue-app': ^2.15.2
   '@nuxtjs/composition-api': ^0.20.2
   css-loader: ^5.0.2
+  fs-extra: ^9.1.0
   nuxt: ^2.15.0
   postcss: ^8.2.6
   postcss-import: ^13.0.0
