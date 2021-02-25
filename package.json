@@ -1,6 +1,6 @@
 {
   "name": "vue-windicss-preprocess",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A vue loader to compile tailwindcss at build time based on windicss compiler.",
   "main": "index.js",
   "types": "index.d.ts",
