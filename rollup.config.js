@@ -100,6 +100,10 @@ const browser = {
       "process.env.BROWSER": true,
       "process.env.NODE_ENV": `"publish"`
     })
+  ],
+  external: [
+    "postcss",
+    "postcss-nested"
   ]
 };
 
