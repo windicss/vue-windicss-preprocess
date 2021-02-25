@@ -22,7 +22,7 @@ const OPTIONS: {
 };
 
 const REGEXP = {
-    matchStyle: /<style[^>]*>([\s\S]*)<\/style>/g,
+    matchStyle: /<style[^>]*?(\/|(>([\s\S]*?)<\/style))>/g,
     matchTemplate: /<template>([\s\S]+)<\/template>/,
     matchClasses: /('[\s\S]+?')|("[\s\S]+?")|(`[\s\S]+?`)/g,
     isGlobalStyle: /<\/?style\s+global[^>]*>/,
