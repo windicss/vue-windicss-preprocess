@@ -89,11 +89,6 @@ export default function (this: loader.LoaderContext, content:string) {
     if (styleBlocks) {
         styleBlocks.forEach(async style => {
             let styleStr = style.replace(/<\/?style[^>]*>/g, "");
-            if (!process.env.BROWSER) {
-                const postcssPlugins = [(await import('postcss-nested')).default()]
-                const result = await((await import('postcss')).default(postcssPlugins).process(styleStr, { from: undefined }));
-                styleStr = result.css
-            }
             (REGEXP.isGlobalStyle.test(style)? globalStyles : scopedStyles).push(new CSSParser(styleStr, processor).parse());
         });
         content = content.replace(REGEXP.matchStyle, "");
