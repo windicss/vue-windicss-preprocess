@@ -219,7 +219,7 @@ Hit `ctrl-shift-p` or `cmd-shift-p` on mac, type open settings, and select `Pref
 
 - [Roadmap](https://github.com/windicss/windicss/projects/1)
 
-- [Documents](https://windicss.netlify.app/)
+- [Documents](https://windicss.org)
 
 - [Discussions](https://github.com/windicss/windicss/discussions)
 
