@@ -2,6 +2,10 @@
 
 > A vue loader to compile [tailwindcss](https://github.com/tailwindlabs/tailwindcss) at build time based on [windicss](https://github.com/windicss/windicss) compiler.
 
+```diff
++ This package will be archived, we will give up support for it, please switch your project to [windicss-webpack-plugin](https://github.com/windicss/windicss-webpack-plugin)
+```
+
 ## Installation
 
 ```sh
